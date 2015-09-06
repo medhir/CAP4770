@@ -1,0 +1,2 @@
+Average size of image requests with response 200: 3617.71900267
+Standard deviation of image requests with response 200: 9056.25474303
