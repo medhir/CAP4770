@@ -40,5 +40,5 @@ for key in hour_grouped.groups.keys():
   clients_by_hour['number_of_clients'].append(hour_grouped.get_group(key)['ClientID'].size)
 
 clients_by_hour_df = pd.DataFrame(clients_by_hour)
-clients_by_hour_df.plot()
+clients_by_hour_df.plot(kind='bar', x='hour', y='number_of_clients')
 show()
