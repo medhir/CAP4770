@@ -31,3 +31,14 @@ print >> f, 'Average size of image requests with response 200: ' + str(req200[im
 print >> f, 'Standard deviation of image requests with response 200: ' + str(req200[images]['Size'].std())
 
 #Exercise 4
+log_df['DateTime'] = pd.to_datetime(log_df.apply(lambda row: row['Date'] + ' ' + row['Time'], axis=1)) 
+hour_grouped = log_df.groupby(lambda row: log_df['DateTime'][row].hour)
+
+clients_by_hour = {'hour': [], 'number_of_clients': []}
+for key in hour_grouped.groups.keys():
+  clients_by_hour['hour'].append(key)
+  clients_by_hour['number_of_clients'].append(hour_grouped.get_group(key)['ClientID'].size)
+
+clients_by_hour_df = pd.DataFrame(clients_by_hour)
+clients_by_hour_df.plot()
+show()
